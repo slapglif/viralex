@@ -1,0 +1,99 @@
+ <div id="page-header" class="clearfix">
+        <div class="page-header">
+            <h2>Buy Points</h2>
+            <span class="txt">Purchase VIP Points with fiat currency</span>
+        </div>
+    </div>
+
+
+
+     <div class="col-xs-12 col-centered">
+      <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <!-- col-lg-3 start here -->
+                                <div class="pricing-table">
+                                    <div class="pricing-header">
+                                        <h3>20000 Points</h3>
+                                    </div>
+
+                                    <div class="pricing-bottom clearfix">
+                                        <div class="price">
+                                            <span>$25</span>
+                                            <a href="#" class="btn btn-primary btn-lg btn-block">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                <!-- col-lg-3 start here -->
+                                <div class="pricing-table">
+                                    <div class="pricing-header">
+                                        <h3>50000 Points</h3>
+                                    </div>
+
+                                    <div class="pricing-bottom clearfix">
+                                        <div class="price">
+                                            <span>$55</span>
+                                            <a href="#" class="btn btn-primary btn-lg btn-block">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <!-- col-lg-3 start here -->
+                                <div class="pricing-table">
+                                    <div class="pricing-header">
+                                        <h3>120000 Points</h3>
+                                    </div>
+
+                                    <div class="pricing-bottom clearfix">
+                                        <div class="price">
+                                            <span>$120</span>
+                                            <a href="#" class="btn btn-primary btn-lg btn-block">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <!-- col-lg-3 start here -->
+                                <div class="pricing-table">
+                                    <div class="pricing-header">
+                                        <h3>240000 Points</h3>
+                                    </div>
+
+                                    <div class="pricing-bottom clearfix">
+                                        <div class="price">
+                                            <span>$220</span>
+                                            <a href="#" class="btn btn-primary btn-lg btn-block">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<p>&nbsp;</p>
+          <div align="center"><h3>Or... Become a VIP Member</h3>
+                <a href="/vip" data-ajax="1"> <button class="btn btn-info">Start Saving Today!</button></a></div>
+
+                        </div>
+         <p>&nbsp;</p>
+                        <!-- End .row -->
+</div>
+
+
+      <script>
+{#          console.log('test...');#}
+          $("a[data-ajax=1]").click(function () {
+
+              var url = $(this).attr('href');
+{#              console.log('ajax url: '  + url);#}
+              $.get(url, function (data) {
+                    $("#ajax-content").html(data);
+              });
+
+              return false;
+          });
+      </script>

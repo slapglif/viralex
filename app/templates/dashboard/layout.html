@@ -1,0 +1,279 @@
+<!doctype html>
+<!--[if lt IE 8]><html class="no-js lt-ie8"> <![endif]-->
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>TVE Dashboard</title>
+        <!-- Mobile specific metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+        <!-- Force IE9 to render in normal mode -->
+        <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="application-name" content="" />
+        <!-- Import google fonts - Heading first/ text second -->
+        <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
+        <!-- Css files -->
+        <!-- Icons -->
+        <link href="/static/dashboard/css/icons.css" rel="stylesheet" />
+        <!-- Bootstrap stylesheets (included template modifications) -->
+        <link href="/static/dashboard/css/bootstrap.css" rel="stylesheet" />
+        <!-- Plugins stylesheets (all plugin custom css) -->
+        <link href="/static/dashboard/css/plugins.css" rel="stylesheet" />
+        <!-- Main stylesheets (template main css file) -->
+        <link href="/static/dashboard/css/main.css" rel="stylesheet" />
+        <!-- Custom stylesheets ( Put your own changes here ) -->
+        <link href="/static/dashboard/css/custom.css" rel="stylesheet" />
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/dashboard/img/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/dashboard/img/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/dashboard/img/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/static/dashboard/img/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="icon" href="/static/dashboard/img/ico/favicon.ico" type="image/png">
+        <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+        <meta name="msapplication-TileColor" content="#3399cc" />
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+        <!-- .page-navbar -->
+        <div id="header" class="page-navbar">
+            <!-- .navbar-brand -->
+            <a href="index.html" class="navbar-brand hidden-xs hidden-sm">
+                <img src="/static/dashboard/img/logo.png" class="logo hidden-xs" alt="Dynamic logo">
+                <img src="/static/dashboard/img/logosm.png" class="logo-sm hidden-lg hidden-md" alt="Dynamic logo">
+            </a>
+
+            <!-- / navbar-brand -->
+            <!-- .no-collapse -->
+            <div id="navbar-no-collapse" class="navbar-no-collapse">
+                <!-- top left nav -->
+                <ul class="nav navbar-nav">
+                    <li class="toggle-sidebar">
+                        <a href="#">
+                            <i class="fa fa-reorder"></i>
+                            <span class="sr-only">Collapse sidebar</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- / top left nav -->
+                <!-- top right nav -->
+                <ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+                        <a href="#" data-toggle="dropdown">
+                            <i class="fa fa-cog"></i>
+                            <span class="sr-only">Settings</span>
+                        </a>
+<ul class="dropdown-menu right" role="menu" style="margin-left: -24px;">
+                                    <li><a href="profile.html"><i class="fa fa-edit"></i>Edit profile</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-money"></i>Windraws</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-credit-card"></i>Deposits</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="login.html"><i class="fa fa-power-off"></i>Logout</a>
+                                    </li>
+                                </ul>
+                    </li>
+
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-power-off"></i>
+                            <span class="sr-only">Logout</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- / top right nav -->
+            </div>
+            <!-- / collapse -->
+        </div>
+        <!-- / page-navbar -->
+        <!-- #wrapper -->
+        <div id="wrapper">
+            <!-- .page-sidebar -->
+            <aside id="sidebar" class="page-sidebar hidden-md hidden-sm hidden-xs">
+                <!-- Start .sidebar-inner -->
+                <div class="sidebar-inner">
+                    <!-- Start .sidebar-scrollarea -->
+                    <div class="sidebar-scrollarea">
+                        <!--  .sidebar-panel -->
+                        <div class="sidebar-panel">
+                            <h5 class="sidebar-panel-title">Vince Kuro</h5>
+                        </div>
+                        <!-- / .sidebar-panel -->
+                        <div class="user-info clearfix">
+                            <img src="/static/dashboard/img/avatars/128.jpg" alt="avatar">
+                            <span class="name">VIP Points</span>
+                            <span class="btn btn-success"><i class="fa fa-star">100</i></span>
+
+                        </div>
+                        <!--  .sidebar-panel -->
+                        <div class="sidebar-panel">
+                            <h5 class="sidebar-panel-title">Navigation</h5>
+                        </div>
+                        <!-- / .sidebar-panel -->
+                        <!-- .side-nav -->
+                        <div class="side-nav">
+                            <ul class="nav">
+                                <li><a href="/"><i class="l-basic-laptop"></i><span class="txt">Dashboard</span></a>
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class="l-basic-webpage-txt"></i><span class="txt">Pages</span></a>
+                                    <ul class="sub">
+                                        <li><a href="/mypages" data-ajax="1"><span class="txt">My Pages</span></a>
+                                        </li>
+                                        <li><a href="/addpage" data-ajax="1"><span class="txt">Add Page</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" ><i class="l-basic-elaboration-browser-star"></i><span class="txt">Earn Points</span></a>
+                                    <ul class="sub">
+                                        <li><a href="/earn/fb" data-ajax="1"><span class="txt">Facebook </span></a>
+                                        </li>
+                                        <li><a href="/earn/g1" data-ajax="1"><span class="txt">Google+</span></a>
+                                        </li>
+                                        <li><a href="/earn/ld" data-ajax="1"><span class="txt">LinkedIn </span></a>
+                                        </li>
+                                        <li><a href="/earn/ms" data-ajax="1"><span class="txt">MySpace </span></a>
+                                        </li>
+                                        <li><a href="/earn/rb" data-ajax="1"><span class="txt">Reverbnation </span></a>
+                                        </li>
+                                        <li><a href="/earn/sc" data-ajax="1"><span class="txt">Soundcloud </span></a>
+                                        </li>
+                                        <li><a href="/earn/su" data-ajax="1"><span class="txt">Stumbleupon </span></a>
+                                        </li>
+                                        <li><a href="/earn/te" data-ajax="1"><span class="txt">Traffic Exchange</span></a>
+                                        </li>
+                                        <li><a href="/earn/tw" data-ajax="1"><span class="txt">Twitter</span></a>
+                                        </li>
+                                        <li><a href="/earn/yt" data-ajax="1"><span class="txt">Youtube</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/buy" data-ajax="1"><i class="l-ecommerce-sale"></i><span class="txt">Buy Points</span></a>
+                                </li>
+                                <li><a href="/vip" data-ajax="1"><i class="l-ecommerce-diamond"></i><span class="txt">VIP Membership</span></a>
+                                </li>
+                                <li><a href="portlets.html"><i class="l-ecommerce-bag-plus"></i><span class="txt">Daily Bonus</span></a>
+                                </li>
+                                </li>
+                                <li><a href="portlets.html"><i class=" l-basic-share"></i><span class="txt">Affiliates</span></a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- / side-nav -->
+                        <!--  .sidebar-panel -->
+
+                    <!-- End .sidebar-scrollarea -->
+                </div>
+                <!-- End .sidebar-inner -->
+            </aside>
+            <!-- / page-sidebar -->
+            <!-- Start #right-sidebar -->
+
+            <!-- End #right-sidebar -->
+            <!-- .page-content -->
+            <div class="page-content sidebar-page right-sidebar-page clearfix">
+                <!-- .page-content-wrapper -->
+                <div class="page-content-wrapper">
+                    <div class="page-content-inner">
+                        <!-- .page-content-inner -->
+
+
+<div id="ajax-content">
+{% block body %}{% endblock %}
+</div>
+
+
+
+        <!-- End #footer  -->
+        <!-- Back to top -->
+        <div id="back-to-top"><a href="#">Back to Top</a>
+        </div>
+        <!-- Javascripts -->
+        <!-- Load pace first -->
+        <script src="/static/dashboard/plugins/core/pace/pace.min.js"></script>
+        <!-- Important javascript libs(put in all pages) -->
+
+        <!--[if lt IE 9]>
+  <script type="text/javascript" src="js/libs/excanvas.min.js"></script>
+  <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script type="text/javascript" src="js/libs/respond.min.js"></script>
+<![endif]-->
+
+
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="js/libs/jquery-2.1.1.min.js">\x3C/script>')
+        </script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="js/libs/jquery-ui-1.10.4.min.js">\x3C/script>')
+        </script>
+
+
+
+
+        <!-- Bootstrap plugins -->
+        <script src="/static/dashboard/js/bootstrap/bootstrap.js"></script>
+        <!-- Core plugins ( not remove ) -->
+        <script src="/static/dashboard/js/libs/modernizr.custom.js"></script>
+        <!-- Handle responsive view functions -->
+        <script src="/static/dashboard/js/jRespond.min.js"></script>
+        <!-- Custom scroll for sidebars,tables and etc. -->
+        <script src="/static/dashboard/plugins/core/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/static/dashboard/plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
+        <!-- Remove click delay in touch -->
+        <script src="/static/dashboard/plugins/core/fastclick/fastclick.js"></script>
+        <!-- Increase jquery animation speed -->
+        <script src="/static/dashboard/plugins/core/velocity/jquery.velocity.min.js"></script>
+        <!-- Quick search plugin (fast search for many widgets) -->
+        <script src="/static/dashboard/plugins/core/quicksearch/jquery.quicksearch.js"></script>
+        <!-- Bootbox fast bootstrap modals -->
+        <script src="/static/dashboard/plugins/ui/bootbox/bootbox.js"></script>
+        <!-- Other plugins ( load only nessesary plugins for every page) -->
+        <script src="/static/dashboard/js/main.js"></script>
+        <script src="/static/dashboard/js/pages/dashboard.js"></script>
+        <script src="/static/dashboard/js/jquery.dynamic.js"></script>
+        <script src="/static/dashboard/plugins/forms/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+        <script src="/static/dashboard/plugins/forms/validation/jquery.validate.js"></script>
+        <script src="/static/dashboard/plugins/forms/validation/additional-methods.min.js"></script>
+        <script src="/static/dashboard/plugins/charts/sparklines/jquery.sparkline.js"></script>
+        <script src="/static/dashboard/plugins/charts/progressbars/progressbar.js"></script>
+        <script src="/static/dashboard/plugins/ui/waypoint/waypoints.js"></script>
+        <script src="/static/dashboard/plugins/ui/weather/skyicons.js"></script>
+        <script src="/static/dashboard/plugins/ui/notify/jquery.gritter.js"></script>
+        <script src="/static/dashboard/plugins/misc/countTo/jquery.countTo.js"></script>
+
+
+
+
+      <script>
+{#          console.log('test...');#}
+          $("a[data-ajax=1]").click(function () {
+
+              $("a[data-ajax=1]").removeClass('active');
+              $(this).addClass('active');
+
+              var url = $(this).attr('href');
+{#              console.log('ajax url: '  + url);#}
+              $.get(url, function (data) {
+                    $("#ajax-content").html(data);
+              });
+
+              return false;
+          });
+      </script>
+
+
+    </body>
+</html>
+

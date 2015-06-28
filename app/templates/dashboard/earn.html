@@ -1,0 +1,226 @@
+
+{% block body %}
+
+
+
+
+    <div id="page-header" class="clearfix">
+        <div class="page-header">
+            <h2>Earn Points</h2>
+            <span class="txt">Use Social Media to earn VIP Points!</span>
+        </div>
+    </div>
+    {% if earn == 'fb' %}
+    {#<div class="col-md-4" > </div>#}
+    <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-facebook"></i> Facebook</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default disabled" role="button">Likes</a>
+                    <a class="btn btn-default" role="button">Shares</a>
+                    <a class="btn btn-default" role="button">Follow</a>
+                </div>
+                <p></p>
+
+                <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+                 <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+                 <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+                 <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+                 <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+                 <div class="col-md-2  sortable-layout ui-sortable">
+                    <div class="panel panel-default plain panelMove" id="dyn_0">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><strong>Supernet</strong>
+                                <small>4 Points</small>
+                            </h4>
+
+                            <div class="panel-body">
+                                <a href="/static/dashboard/img/gallery/1.jpg" data-toggle="lightbox" data-gallery="gallerymode"
+                                   data-title="Yachts" data-parrent="">
+                                    <img class="img-responsive" src="/static/dashboard/img/gallery/1.jpg" alt="image alt">
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+</div>
+
+            <div align="center"><a href="/addpage" data-ajax="1"><button class="btn btn-success">Add your page here</button></a></div>
+                </div>
+  </div>
+
+              <script>
+{#          console.log('test...');#}
+          $("a[data-ajax=1]").click(function () {
+
+              var url = $(this).attr('href');
+{#              console.log('ajax url: '  + url);#}
+              $.get(url, function (data) {
+                    $("#ajax-content").html(data);
+              });
+
+              return false;
+          });
+
+    {% elif earn == 'g1' %}
+
+
+
+
+    {% elif earn == 'ld' %}
+
+
+
+
+    {% elif earn == 'ms' %}
+
+
+
+
+    {% elif earn == 'rb' %}
+
+
+
+
+    {% elif earn == 'sc' %}
+
+
+
+
+    {% elif earn == 'su' %}
+
+
+
+
+    {% elif earn == 'te' %}
+
+
+
+
+    {% elif earn == 'tu' %}
+
+
+
+
+    {% elif earn == 'tw' %}
+
+
+
+
+    {% elif earn == 'yt' %}
+
+
+{% endif %}
+
+{% endblock %}

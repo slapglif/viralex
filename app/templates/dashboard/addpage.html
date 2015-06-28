@@ -1,0 +1,222 @@
+{% block body %}
+
+    <div id="page-header" class="clearfix">
+        <div class="page-header">
+            <h2>Add Page</h2>
+            <span class="txt">Follow the instructions to add your social media page.</span>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-magic"></i> Tell us about your page</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!-- Start .panel -->
+
+                <div class="panel-body pt0 pb0">
+                    <div id="wizard1" class="bwizard">
+                        <!-- Start .bwizard -->
+                        <ul class="bwizard-steps">
+                            <li class="active">
+                                <a href="#tab4" data-toggle="tab">
+                                    <span class="step-number">1</span>
+                                    <span class="step-text">Page Type</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab5" data-toggle="tab">
+                                    <span class="step-number">2</span>
+                                    <span class="step-text">Page Info</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab6" data-toggle="tab">
+                                    <span class="step-number">3</span>
+                                    <span class="step-text">Summary</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="wizard-progress">
+                            <div id="bar" class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab4">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label" for="">Page Type:</label>
+
+                                        <div class="col-lg-10 col-md-9">
+                                            <select class="fancy-select form-control">
+                                                <option value="Amsterdam">Facebook</option>
+                                                <option value="Washington">Washington</option>
+                                                <option value="Sydney">Sydney</option>
+                                                <option value="Beijing">Beijing</option>
+                                                <option value="Cairo">Cairo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- End .control-group  -->
+                                </div>
+                                <div class="tab-pane" id="tab5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <!-- col-lg-12 start here -->
+
+                                            <form id="validate" class="form-horizontal group-border stripped"
+                                                  role="form">
+                                                <div class="form-group">
+                                                    <label for="text" class="col-lg-2 col-md-3 control-label">Page
+                                                        Url</label>
+
+                                                    <div class="col-lg-10 col-md-9">
+                                                        <input id="text" type="text" class="form-control required">
+                                                    </div>
+                                                </div>
+
+                                                <!-- End .control-group  -->
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 control-label"
+                                                           for="">Demographics</label>
+
+                                                    <div class="col-lg-10 col-md-9">
+                                                        <div class="row">
+                                                            <!-- Start .row -->
+                                                            <div class="col-md-4">
+                                                                <select class="fancy-select1 form-control">
+                                                                    <option data-icon="fa fa-apple" value="Apple">Men
+                                                                    </option>
+                                                                    <option data-icon="fa fa-automobile" value="Cars">
+                                                                        Cars
+                                                                    </option>
+                                                                    <option data-icon="fa fa-cube" value="Cube">Cube
+                                                                    </option>
+                                                                    <option data-icon="fa fa-heart" value="Heart">
+                                                                        heart
+                                                                    </option>
+                                                                    <option data-icon="fa fa-life-bouy" value="Help">
+                                                                        Help
+                                                                    </option>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select class="fancy-select form-control">
+                                                                    <option value="Amsterdam">Amsterdam</option>
+                                                                    <option value="Washington">Washington</option>
+                                                                    <option value="Sydney">Sydney</option>
+                                                                    <option value="Beijing">Beijing</option>
+                                                                    <option value="Cairo">Cairo</option>
+                                                                </select>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- End .row -->
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tab6">
+
+                                    <style>
+                                        /* CSS: (StyleSheet) */
+
+#imgPreviewWithStyles {
+    background: #222;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 15px;
+    z-index: 999;
+    border: none;
+}
+
+/* Text below image */
+#imgPreviewWithStyles span {
+    color: white;
+    text-align: center;
+    display: block;
+    padding: 10px 0 3px 0;
+}
+                                    </style>
+
+
+                                 <div class="list-group">
+                                            <a href="#" class="list-group-item active">
+                                                <h4 class="list-group-item-heading">List group item heading</h4>
+                                                <p class="list-group-item-text">
+                                                    Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                                                </p>
+                                            </a>
+                                     <a href="http://google.com" rel="img/google.jpg">The Sun</a>
+
+
+                                     <script>
+ $('ul#fifth a').imgPreview({
+    containerID: 'imgPreviewWithStyles',
+    /* Change srcAttr to rel: */
+    srcAttr: 'rel',
+    imgCSS: {
+        // Limit preview size:
+        height: 200
+    },
+    // When container is shown:
+    onShow: function(link){
+        $('<span>' + link.href + '</span>').appendTo(this);
+    },
+    // When container hides:
+    onHide: function(link){
+        $('span', this).remove();
+    }
+});
+                                     </script>
+
+
+                                    <!-- End .control-group  -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <ul class="pager">
+                        <li class="previous"><a href="#">&larr; Back</a>
+                        </li>
+                        <li class="next"><a href="#">Next &rarr;</a>
+                        </li>
+                        <li class="next finish" style="display:none;"><a href="#">Finish</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End .bwizard -->
+            </div>
+        </div>
+        <!-- End .panel -->
+    </div>
+
+
+
+
+        <!-- Javascripts -->
+
+
+
+        <script src="/static/dashboard/plugins/forms/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+        <script src="/static/dashboard/plugins/forms/validation/jquery.validate.js"></script>
+        <script src="/static/dashboard/plugins/forms/validation/additional-methods.min.js"></script>
+        <script src="/static/dashboard/plugins/charts/sparklines/jquery.sparkline.js"></script>
+        <script src="/static/dashboard/js/pages/forms-wizard.js"></script>
+
+{% endblock %}
