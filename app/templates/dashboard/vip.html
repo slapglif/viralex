@@ -6,6 +6,14 @@
     </div>
 
 
+
+ <div align="center">
+
+     <h1>Being a VIP has it's advantages.</h1>
+     <p>&nbsp;</p>
+
+ </div>
+
 <div class="row">
     <!-- Start .row -->
 
@@ -54,7 +62,7 @@
                 <div class="price">
                     <span>$20</span>
                     / month
-                    <a href="#" class="btn btn-primary btn-lg btn-block">Order now</a>
+                    <a href="/checkout" class="btn btn-primary btn-lg btn-block " data-ajax="1">Order now</a>
                 </div>
             </div>
         </div>
@@ -66,11 +74,19 @@
 
 
                                     </div>
-                                </div>
-                                <!-- End .panel -->
 
 
 
+     <script>
+        {#          console.log('test...');#}
+        $("a[data-ajax=1]").click(function () {
 
-</div>
-<!-- End .row -->
+            var url = $(this).attr('href');
+            {#              console.log('ajax url: '  + url);#}
+            $.get(url, function (data) {
+                $("#ajax-content").html(data);
+            });
+
+            return false;
+        });
+         </script>

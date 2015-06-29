@@ -107,4 +107,7 @@ def funds():
 def vip():
     return render_template("dashboard/vip.html")
 
+@app.route("/checkout")
+def checkout():
+    return render_template("dashboard/checkout.html")
 
