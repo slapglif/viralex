@@ -36,7 +36,7 @@
                                                         VIP Points: <span>146</span>
 
                                                     </p>
-                                                    <a href="/buy" data-ajax><button class="btn btn-success">Buy VIP Points</button></a>
+                                                    <a href="/buy" data-ajax="1"><button class="btn btn-success">Buy VIP Points</button></a>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -112,7 +112,7 @@
 
       <div class="col-lg-12 col-md-6">
                                 <!-- col-lg-6 start here -->
-                                <div class="panel panel-default plain toggle panelClose panelRefresh">
+                                <div class="panel panel-default">
                                     <!-- Start .panel -->
                                     <div class="panel-heading white-bg">
                                         <h4 class="panel-title">Account History</h4>
@@ -170,5 +170,18 @@
                             </div>
                             <!-- col-lg-6 end here -->
 
+
+                              <script>
+{#          console.log('test...');#}
+          $("a[data-ajax=1]").click(function () {
+
+              var url = $(this).attr('href');
+{#              console.log('ajax url: '  + url);#}
+              $.get(url, function (data) {
+                    $("#ajax-content").html(data);
+              });
+
+              return false;
+          });
 
 {% endblock %}
