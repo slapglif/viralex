@@ -88,9 +88,13 @@ def cmd(command):
 def addpage():
     return render_template("dashboard/addpage.html")
 
+@app.route("/mypages")
+def mypages():
+    return render_template("dashboard/mypages.html",content=None)
+
 @app.route("/earn/<ss>")
 def earn(ss):
-    output = render_template("dashboard/earn.html",earn=ss)
+    output = render_template("dashboard/earn.html",earn=ss,content=None)
     return output
 
 @app.route("/dashboard")
