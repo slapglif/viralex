@@ -115,3 +115,6 @@ def vip():
 def checkout():
     return render_template("dashboard/checkout.html")
 
+@app.route("/exchange")
+def exchange():
+    return render_template("dashboard/exchange.html")
