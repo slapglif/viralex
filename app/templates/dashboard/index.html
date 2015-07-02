@@ -1,5 +1,13 @@
+
+ {% if current_user.is_authenticated() %}
+
+
+
 {% extends 'dashboard/layout.html' %}
 {% block body %}
+
+{% if user.email_confirmed ==1 %}
+
 
  <div id="page-header" class="clearfix">
         <div class="page-header">
@@ -31,9 +39,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="profile-name">
-                                                    <h3>Jonathan Smith</h3>
+                                                    <h3>{{ user.nickname }}</h3>
                                                     <p class="balance">
-                                                        VIP Points: <span>146</span>
+                                                        Viral Points: <span>{{ user.vpoints }}</span>
 
                                                     </p>
                                                     <a href="/buy" data-ajax="1"><button class="btn btn-success btn-alt">Buy VIP Points</button></a>
@@ -187,4 +195,23 @@
           });
                                   </script>
 
+
+{% else %}
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <div align="center"><h1>You need to verify your email to proceed!</h1></div>
+
+{% endif %}
+
 {% endblock %}
+
+
+ {% else %}
+
+{% extends 'dashboard/login.html' %}
+
+ {% endif %}

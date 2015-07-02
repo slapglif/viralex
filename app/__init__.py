@@ -12,6 +12,12 @@ engine = create_engine('mysql://root:Fuc5M4n15!@db.freebieservers.com/viralex', 
 db_session = scoped_session(sessionmaker(autocommit=False,autoflush=False,bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
+from flask.ext.login import LoginManager
+from flask.ext.bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
+
+from .models import User
 
 def init_db():
     import app.models
@@ -19,3 +25,12 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 init_db()
+
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+@login_manager.user_loader
+def load_user(userid):
+    return User.query.filter(User.id==userid).first()

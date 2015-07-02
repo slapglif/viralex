@@ -18,7 +18,7 @@
                 'showSteps' : true,
                 'stepsText' : '{n}. {t}',
                 'showButtons' : true,
-                'buttonsClass' : '',
+                'buttonsClass' : 'btn btn-default',
                 'prevButton' : '< Back',
                 'nextButton' : 'Next >',
                 'debug' : false,

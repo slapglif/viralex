@@ -75,7 +75,7 @@
                     </li>
 
                     <li>
-                        <a href="login.html">
+                        <a href="/logout">
                             <i class="fa fa-power-off"></i>
                             <span class="sr-only">Logout</span>
                         </a>
@@ -97,13 +97,13 @@
                     <div class="sidebar-scrollarea">
                         <!--  .sidebar-panel -->
                         <div class="sidebar-panel">
-                            <h5 class="sidebar-panel-title">Vince Kuro</h5>
+                            <h5 class="sidebar-panel-title">{{ user.nickname }}</h5>
                         </div>
                         <!-- / .sidebar-panel -->
                         <div class="user-info clearfix">
                             <img src="/static/dashboard/img/avatars/128.jpg" alt="avatar">
-                            <span class="name">VIP Points</span>
-                            <span class="btn btn-success btn-alt"><i class="fa fa-star">100</i></span>
+                            <span class="name">Viral Points</span>
+                            <span class="btn btn-success btn-alt"><i class="fa fa-star">{{ user.vpoints }}</i></span>
 
                         </div>
                         <!--  .sidebar-panel -->

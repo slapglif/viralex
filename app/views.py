@@ -2,15 +2,18 @@
 from app.models import User
 import re, requests, time, datetime
 from app import app, engine, db_session
-
-from flask import Flask, redirect, url_for, render_template, flash
+from mandril import drill
+from flask import Flask, redirect, url_for, render_template, flash, request, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, UserMixin, login_user, logout_user,\
     current_user
 from oauth import OAuthSignIn
+from itsdangerous import URLSafeTimedSerializer
+from subprocess import (PIPE, Popen)
+from flask.ext.login import login_user
+import json
 
 app.config['SECRET_KEY'] = 'top secret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['OAUTH_CREDENTIALS'] = {
     'facebook': {
         'id': '470154729788964',
@@ -22,7 +25,9 @@ app.config['OAUTH_CREDENTIALS'] = {
     }
 }
 
-db = db_session
+
+
+ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 lm = LoginManager(app)
 
 @lm.user_loader
@@ -32,14 +37,104 @@ def load_user(id):
 
 @app.route('/')
 def index():
-    return render_template('dashboard/index.html')
+    user = None
+    if 'user' in session:
+        user = User.query.filter_by(id=session['user']).first()
+    output = render_template('dashboard/index.html',user=user)
 
+    return output
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    if request.form.get("email"):
+        user = User.query.filter_by(email=request.form.get("email")).first()
+        if user.is_correct_password(request.form.get("password")):
+            login_user(user)
+            print "password is correct"
+            session['user'] = json.dumps(str(user))
+            return redirect(url_for('index'))
+        else:
+            print "password is not correct"
+            return redirect(url_for('login'))
+    print "no password"
+    return render_template('dashboard/login.html')
+
+
+@app.route("/register")
+def register():
+
+    output = render_template('dashboard/register.html')
+    return output
+
+
+@app.route('/register/create', methods=["GET", "POST"])
+def create_account():
+    if request.form.get("email"):
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = User(email=request.form.get("email"), password=request.form.get("password"), vpoints=0, confirm_email=0)
+        db_session.add(user)
+        db_session.commit()
+
+        # Now we'll send the email confirmation link
+        subject = "Confirm your email"
+
+        token = ts.dumps(user.email, salt='email-confirm-key')
+
+        confirm_url = url_for(
+            'confirm_email',
+            token=token,
+            _external=True)
+
+        html = render_template(
+            'dashboard/email/activate.html',
+            confirm_url=confirm_url)
+
+        # We'll assume that send_email has been defined in myapp/util.py
+        drill(user.email, subject, html)
+
+        return redirect(url_for("index"))
+
+    x = request.form.get("email")
+
+    print "x is %s"%x
+
+    return render_template("dashboard/register.html")
+
+
+
+@app.route('/confirm/<token>')
+def confirm_email(token):
+    try:
+        email = ts.loads(token, salt="email-confirm-key", max_age=86400)
+    except:
+        return "404"
+
+    user = User.query.filter_by(email=email).first()
+
+    user.email_confirmed = True
+
+    db_session.add(user)
+    db_session.commit()
+    session['user'] = user.id
+
+
+    return redirect('/')
+
+
+
+@app.route("/lostpw")
+def lostpw():
+    return render_template('dashboard/lostpw.html')
 
 
 
 @app.route('/logout')
 def logout():
     logout_user()
+    session.pop('user', None)
     return redirect(url_for('index'))
 
 
@@ -63,14 +158,10 @@ def oauth_callback(provider):
     user = User.query.filter_by(social_id=social_id).first()
     if not user:
         user = User(social_id=social_id, nickname=username, email=email)
-        db.session.add(user)
-        db.session.commit()
+        db_session.add(user)
+        db_session.commit()
     login_user(user, True)
     return redirect(url_for('index'))
-
-
-from subprocess import (PIPE, Popen)
-
 
 
 

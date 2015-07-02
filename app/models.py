@@ -1,18 +1,32 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, UserMixin
-from app import app, db_session
+from app import db_session,Base, app
+from sqlalchemy import Column, Integer, String, Boolean, BLOB
+from sqlalchemy.ext.hybrid import hybrid_property
 
-db = SQLAlchemy(app)
-lm = LoginManager(app)
+from . import bcrypt
+BCRYPT_LOG_ROUNDS = 12
 
-class User(UserMixin, db.Model):
+class User(UserMixin, Base):
     __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    social_id = db.Column(db.String(64), nullable=False, unique=True)
-    nickname = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(64), nullable=True)
-    vpoints = db.Column(db.String(64), nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    social_id = Column(String(64), nullable=False, unique=True)
+    nickname = Column(String(64), nullable=False, unique=True)
+    email = Column(String(64), nullable=True, unique=True)
+    vpoints = Column(String(64), nullable=True)
+    email_confirmed = Column(Boolean(), nullable=True)
+    _password = Column(String(128))
 
-@lm.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def _set_password(self, plaintext):
+        self._password = bcrypt.generate_password_hash(plaintext)
+
+    def is_correct_password(self, plaintext):
+        if bcrypt.check_password_hash(self._password, plaintext):
+                return True
+
+        return False
