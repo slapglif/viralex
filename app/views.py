@@ -39,7 +39,7 @@ def load_user(id):
 def index():
     user = None
     if 'user' in session:
-        user = User.query.filter_by(id=session['user']).first()
+        user = User.query.filter_by(email=session['user']).first()
     output = render_template('dashboard/index.html',user=user)
 
     return output
@@ -53,7 +53,7 @@ def login():
         if user.is_correct_password(request.form.get("password")):
             login_user(user)
             print "password is correct"
-            session['user'] = json.dumps(str(user))
+            session['user'] = user.email
             return redirect(url_for('index'))
         else:
             print "password is not correct"
@@ -68,9 +68,6 @@ def register():
     output = render_template('dashboard/register.html')
     return output
 
-def goct(count):
-    count += 1
-    return count
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
@@ -117,10 +114,8 @@ def confirm_email(token):
     user = User.query.filter_by(email=email).first()
 
     user.email_confirmed = True
-
-    db_session.add(user)
+    session['user'] = json.dumps(str(user))
     db_session.commit()
-    session['user'] = user.id
 
 
     return redirect('/')

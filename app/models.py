@@ -37,4 +37,3 @@ class User(UserMixin, Base):
         if rv is None:
 
             return rv
-
