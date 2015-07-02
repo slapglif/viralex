@@ -74,7 +74,7 @@ def create_account():
     if request.form.get("email"):
         email = request.form.get("email")
         password = request.form.get("password")
-        user = User(email=request.form.get("email"), password=request.form.get("password"), vpoints=0, confirm_email=0)
+        user = User(nickname=request.form.get("username"), email=request.form.get("email"), password=request.form.get("password"), vpoints=0, confirm_email=0)
         db_session.add(user)
         db_session.commit()
 
