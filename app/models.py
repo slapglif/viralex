@@ -9,9 +9,9 @@ BCRYPT_LOG_ROUNDS = 12
 
 class User(UserMixin, Base):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    social_id = Column(String(64), nullable=False, unique=True)
-    nickname = Column(String(64), nullable=False, unique=True)
+    id = Column(Integer, primary_key=True)
+    social_id = Column(String(64), nullable=True, unique=True)
+    nickname = Column(String(64), nullable=True, unique=True)
     email = Column(String(64), nullable=True, unique=True)
     vpoints = Column(String(64), nullable=True)
     email_confirmed = Column(Boolean(), nullable=True)

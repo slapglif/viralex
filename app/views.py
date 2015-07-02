@@ -68,6 +68,9 @@ def register():
     output = render_template('dashboard/register.html')
     return output
 
+def goct(count):
+    count += 1
+    return count
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
@@ -76,11 +79,6 @@ def create_account():
         password = request.form.get("password")
         exists = User.get_or_create(email)
         user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
-        if exists != None:
-            db_session.add(user)
-            db_session.commit()
-        else:
-            flash("User Already Exists")
 
         # Now we'll send the email confirmation link
         subject = "Confirm your email"
@@ -96,14 +94,14 @@ def create_account():
             'dashboard/email/activate.html',
             confirm_url=confirm_url)
 
-        # We'll assume that send_email has been defined in myapp/util.py
-        drill(user.email, subject, html)
+        if exists == None:
+            db_session.add(user)
+            db_session.commit()
+            drill(user.email, subject, html)
+        else:
+            flash("User Already Exists")
 
         return redirect(url_for("index"))
-
-    x = request.form.get("email")
-
-    print "x is %s"%x
 
     return render_template("dashboard/register.html")
 
