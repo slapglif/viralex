@@ -74,9 +74,13 @@ def create_account():
     if request.form.get("email"):
         email = request.form.get("email")
         password = request.form.get("password")
-        user = User(nickname=request.form.get("username"), email=request.form.get("email"), password=request.form.get("password"), vpoints=0, email_confirmed=0)
-        db_session.add(user)
-        db_session.commit()
+        exists = User.get_or_create(email)
+        user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
+        if exists != None:
+            db_session.add(user)
+            db_session.commit()
+        else:
+            flash("User Already Exists")
 
         # Now we'll send the email confirmation link
         subject = "Confirm your email"

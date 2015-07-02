@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Login | Dynamic Admin Template</title>
+        <title>Login</title>
         <!-- Mobile specific metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
         <!-- Force IE9 to render in normal mode -->
@@ -43,6 +43,17 @@
 {#                        <img id="logo" src="/static/dashboard/img/logo-dark.png" alt="Dynamic logo">#}
                     </h4>
                 </div>
+
+                {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
                 <div class="panel-body">
                     <form class="form-horizontal mt0" action="/login" id="login-form" role="form" method="post">
                         <div class="form-group">

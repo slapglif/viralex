@@ -30,3 +30,11 @@ class User(UserMixin, Base):
                 return True
 
         return False
+
+    @staticmethod
+    def get_or_create(email):
+        rv = User.query.filter_by(email=email).first()
+        if rv is None:
+
+            return rv
+
