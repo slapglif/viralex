@@ -182,6 +182,7 @@ def create_account():
             confirm_url=confirm_url)
 
         if exists == None:
+            print exists
             db_session.add(user)
             db_session.commit()
             drill(user.email, subject, html)
