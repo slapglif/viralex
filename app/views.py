@@ -84,6 +84,16 @@ def index():
     return output
 
 
+
+@app.route('/social')
+def social():
+    user = None
+    if 'user' in session:
+        user = User.query.filter_by(email=session['user']).first()
+    output = render_template('dashboard/social.html',user=user)
+    return output
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -173,6 +183,8 @@ def create_account():
             db_session.commit()
             drill(user.email, subject, html)
         else:
+            db_session.merge(user)
+            db_session.commit()
             flash("User Already Exists")
 
         return redirect(url_for("index"))
