@@ -18,6 +18,8 @@ class Page(Base):
     ppc = Column(Integer, nullable=True)
     ex = Column(Integer, nullable=True)
     status = Column(Boolean(), nullable=True)
+    oauth_token = Column(String(200))
+    oauth_secret = Column(String(200))
 
 
 class User(UserMixin, Base):

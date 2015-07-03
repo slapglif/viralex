@@ -3,7 +3,7 @@ from app.models import User, Page
 import re, requests, time, datetime
 from app import app, engine, db_session
 from mandril import drill
-from flask import Flask, redirect, url_for, render_template, flash, request, session
+from flask import Flask, redirect, url_for, render_template, flash, request, session, g
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, UserMixin, login_user, logout_user,\
     current_user
@@ -11,19 +11,58 @@ from oauth import OAuthSignIn
 from itsdangerous import URLSafeTimedSerializer
 from subprocess import (PIPE, Popen)
 from flask.ext.login import login_user
+from flask_oauth import OAuth
 import json
 
 app.config['SECRET_KEY'] = 'top secret!'
 app.config['OAUTH_CREDENTIALS'] = {
     'facebook': {
-        'id': '470154729788964',
-        'secret': '010cc08bd4f51e34f3f3e684fbdea8a7'
+        'id': '1589724287960064',
+        'secret': '9f737bb729717ce5d2b944b6a582713e'
     },
     'twitter': {
-        'id': '3RzWQclolxWZIMq5LJqzRZPTl',
-        'secret': 'm9TEd58DSEtRrZHpz2EjrV9AhsBRxKMo8m3kuIZj3zLwzwIimt'
+        'id': '3300611698-hUe5gp2oS1c6UQOhVZ1idF1JbW0o059jgXc4Syf',
+        'secret': 'gPWBRQXjkGgYSLCYlfMgOrLnLUO3U2tDhQhcZ8tCZRVnD'
     }
 }
+
+
+
+
+oauth = OAuth()
+
+# Use Twitter as example remote application
+twitter = oauth.remote_app('twitter',
+    # unless absolute urls are used to make requests, this will be added
+    # before all URLs.  This is also true for request_token_url and others.
+    base_url='https://api.twitter.com/1/',
+    # where flask should look for new request tokens
+    request_token_url='https://api.twitter.com/oauth/request_token',
+    # where flask should exchange the token with the remote application
+    access_token_url='https://api.twitter.com/oauth/access_token',
+    # twitter knows two authorizatiom URLs.  /authorize and /authenticate.
+    # they mostly work the same, but for sign on /authenticate is
+    # expected because this will give the user a slightly different
+    # user interface on the twitter side.
+    authorize_url='https://api.twitter.com/oauth/authenticate',
+    # the consumer keys from the twitter application registry.
+    consumer_key='vc5zMaa1FJ1xrWL6E0YTE8G3I',
+    consumer_secret='g0fINwUZU4RpNi3ilWDskK2PWtk7UYqLrilDUE6G9uiHpgTphy'
+)
+
+
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = User.query.get(session['user'])
+
+
+@app.after_request
+def after_request(response):
+    db_session.remove()
+    return response
+
 
 
 
@@ -48,6 +87,7 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
+
     if request.form.get("email"):
         user = User.query.filter_by(email=request.form.get("email")).first()
         if user.is_correct_password(request.form.get("password")):
@@ -59,7 +99,44 @@ def login():
             print "password is not correct"
             return redirect(url_for('login'))
     print "no password"
+
     return render_template('dashboard/login.html')
+
+@app.route("/twlogin")
+def twlogin():
+    # """Calling into authorize will cause the OpenID auth machinery to kick
+    # in.  When all worked out as expected, the remote application will
+    # redirect back to the callback URL provided.
+    # """
+    return twitter.authorize(callback=url_for('oauth_authorized',
+      next=request.args.get('next') or request.referrer or None))
+
+@app.route('/oauth-authorized')
+@twitter.authorized_handler
+def oauth_authorized(resp):
+  next_url = request.args.get('next') or url_for('index')
+  if resp is None:
+      return redirect(next_url)
+
+  this_account = User.query.filter_by(username = resp['screen_name']).first()
+  if this_account is None:
+      new_account = User(resp['screen_name'], "", resp['oauth_token'], resp['oauth_token_secret'])
+      db_session.add(new_account)
+      db_session.commit()
+      login_user(new_account)
+  else:
+      login_user(this_account)
+
+  return redirect(next_url)
+
+
+@twitter.tokengetter
+def get_twitter_token():
+  if current_user.is_authenticated():
+      return (current_user.token, current_user.secret)
+  else:
+      return None
+
 
 
 @app.route("/register")
