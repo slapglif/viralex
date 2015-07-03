@@ -163,7 +163,7 @@ def create_account():
         if request.form.get("password") != None:
             password = request.form.get("password")
         else:
-            pasword = "test"
+            password = "test"
         exists = User.get_or_create(email)
         user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
 
