@@ -7,6 +7,18 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from . import bcrypt
 BCRYPT_LOG_ROUNDS = 12
 
+class Page(Base):
+    __tablename__ = 'pages'
+    id = Column(Integer, primary_key=True)
+    aid = Column(Integer)
+    type = Column(String(64), nullable=True)
+    url = Column(String(128), nullable=True)
+    gender = Column(String(64), nullable=True)
+    countries = Column(String(128), nullable=True)
+    ppc = Column(Integer)
+    status = Column(Boolean(), nullable=True)
+
+
 class User(UserMixin, Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)

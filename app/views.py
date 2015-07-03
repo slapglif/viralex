@@ -1,5 +1,5 @@
 ##My Personal Boiler Plate for all FLASK Apps ##
-from app.models import User
+from app.models import User, Page
 import re, requests, time, datetime
 from app import app, engine, db_session
 from mandril import drill
@@ -114,7 +114,7 @@ def confirm_email(token):
     user = User.query.filter_by(email=email).first()
 
     user.email_confirmed = True
-    session['user'] = json.dumps(str(user))
+    session['user'] = user.email
     db_session.commit()
 
 
@@ -176,9 +176,29 @@ def cmd(command):
 def addpage():
     return render_template("dashboard/addpage.html")
 
-@app.route("/mypages")
+@app.route("/addpage/type/")
+def types():
+    type = request.args.get('value', '')
+    return render_template("dashboard/types.html",type=type)
+
+@app.route("/mypages", methods=['POST', 'GET'])
 def mypages():
-    return render_template("dashboard/mypages.html",content=None)
+    user = None
+    content = None
+    pages = Page.query.filter(Page.url.isnot(None))
+
+    if 'user' in session:
+        user = User.query.filter_by(email=session['user']).first()
+    if request.form.get("inputURL") != None:
+        content = {"aid": user.id, "url": request.form.get("inputURL"),"gender": request.form.get("gender"),"countries": request.form.get("countries"),"ppc": request.form.get("points")}
+        page = Page(aid=user.id, url=request.form.get("inputURL"), type=request.form.get("type"), gender=request.form.get("gender"), countries=request.form.get("countries"), ppc=request.form.get("points"))
+        db_session.add(page)
+        db_session.commit()
+    output = render_template("dashboard/mypages.html",pages=pages,user=user)
+
+    return output
+
+
 
 @app.route("/earn/<ss>")
 def earn(ss):

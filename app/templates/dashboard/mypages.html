@@ -1,4 +1,6 @@
- <div id="page-header" class="clearfix">
+
+
+<div id="page-header" class="clearfix">
         <div class="page-header">
             <h2>My Pages</h2>
             <span class="txt">Manage your social pages</span>
@@ -35,31 +37,33 @@
                                                     <th class="per30">Edit</th>
                                                 </tr>
                                             </thead>
+                                            {% for content in pages %}
                                             <tbody>
                                                 <tr>
                                                                                                         <td>
-                                                        {{ content.title }}Freebieservers
+                                                        {{ content.url }}
                                                     </td>
                                                                                                         <td>
-                                                        {{ content.type }}Facebook
+                                                        {{ content.type }}
                                                     </td>
                                                                                                         <td>
-                                                        {{ content.ex }}3
+                                                        {{ content.ex }}N/A
                                                     </td>
                                                                                                         <td>
-                                                        {{ content.cpc }}10
+                                                        {{ content.ppc }}
                                                     </td>
                                                                                                         <td>
-                                                        {{ content.demo }}Men | All
+                                                        {{ content.gender }} | {{ content.countries }}
                                                     </td>
                                                                                                         <td>
-                                                        {{ content.status }}<i class="label label-success">Enabled</i>
+                                                        <i class="label label-{% if content.status == 1 %}success">Enabled{% else %}danger">Disabled{% endif %}</i>
                                                     </td>
 
                                                     <td class=""><a class="fa fa-gear" href="/edit/{{ content.page }}"></a></td>
                                                 </tr>
 
                                             </tbody>
+                                            {% endfor %}
                                         </table>
                                     </div>
                                 </div>
@@ -67,3 +71,4 @@
                             </div>
                             <!-- col-lg-6 end here -->
                         </div>
+
