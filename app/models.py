@@ -15,7 +15,8 @@ class Page(Base):
     url = Column(String(128), nullable=True)
     gender = Column(String(64), nullable=True)
     countries = Column(String(128), nullable=True)
-    ppc = Column(Integer)
+    ppc = Column(Integer, nullable=True)
+    ex = Column(Integer, nullable=True)
     status = Column(Boolean(), nullable=True)
 
 

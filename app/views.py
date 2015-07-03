@@ -189,14 +189,26 @@ def mypages():
 
     if 'user' in session:
         user = User.query.filter_by(email=session['user']).first()
-    if request.form.get("inputURL") != None:
-        content = {"aid": user.id, "url": request.form.get("inputURL"),"gender": request.form.get("gender"),"countries": request.form.get("countries"),"ppc": request.form.get("points")}
-        page = Page(aid=user.id, url=request.form.get("inputURL"), type=request.form.get("type"), gender=request.form.get("gender"), countries=request.form.get("countries"), ppc=request.form.get("points"))
-        db_session.add(page)
-        db_session.commit()
+
     output = render_template("dashboard/mypages.html",pages=pages,user=user)
 
     return output
+
+@app.route("/mypages/add", methods=['POST', 'GET'])
+def page():
+
+    user = None
+    content = None
+    pages = Page.query.filter(Page.url.isnot(None))
+
+    if 'user' in session:
+        user = User.query.filter_by(email=session['user']).first()
+    if request.form.get("inputURL") != None:
+        content = {"aid": user.id, "url": request.form.get("inputURL"),"gender": request.form.get("gender"),"countries": request.form.get("countries"),"ppc": request.form.get("points")}
+        page = Page(aid=user.id, url=request.form.get("inputURL"), type=request.form.get("type"), gender=request.form.get("gender"), countries=request.form.get("countries"), ppc=request.form.get("points"), ex=0)
+        db_session.add(page)
+        db_session.commit()
+    return render_template("dashboard/page.html",pages=pages,user=user)
 
 
 

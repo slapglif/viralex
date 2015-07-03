@@ -24,7 +24,7 @@
                 'debug' : false,
                 'submitButton': true,
                 'submitButtonText': 'Submit',
-                'submitButtonClass': '',
+                'submitButtonClass': 'btn btn-default xyz',
                 before: function(wizardObj, currentStepObj, nextStepObj) {},
                 after: function(wizardObj, prevStepObj, currentStepObj) {},
                 beforeSubmit: function(wizardObj) {
@@ -89,7 +89,7 @@
                         paginationHtml = '<div class="easyWizardButtons">';
                             paginationHtml += '<button class="prev '+thisSettings.buttonsClass+'">'+thisSettings.prevButton+'</button>';
                             paginationHtml += '<button class="next '+thisSettings.buttonsClass+'">'+thisSettings.nextButton+'</button>';
-                            paginationHtml += thisSettings.submitButton?'<button type="submit" class="submit '+thisSettings.submitButtonClass+'">'+thisSettings.submitButtonText+'</button>':'';
+                            paginationHtml += thisSettings.submitButton?'<button data-ajax="1" type="submit" class="submit '+thisSettings.submitButtonClass+'">'+thisSettings.submitButtonText+'</button>':'';
                         paginationHtml  += '</div>';
                         $paginationBloc = $(paginationHtml);
                         $paginationBloc.css('clear', 'both');
@@ -214,3 +214,5 @@
         }
     };
 })(jQuery);
+
+

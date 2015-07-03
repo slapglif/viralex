@@ -38,7 +38,7 @@
 
 
 
-                <form id="myWizard" method="post" action="/mypages" class="form-horizontal">
+                <form id="myWizard" method="post" action="/mypages/add" class="form-horizontal">
 	<section class="step" data-step-title="Page Information">
         <div class="control-group">
    <label class="control-label" for="type">Type</label>
@@ -402,5 +402,16 @@
 
     <script>$('#myWizard').easyWizard();</script>
 
+                      <script>
+{#          console.log('test...');#}
+          $("button[data-ajax=1]").click(function () {
+              document.getElementById("myWizard").submit();
+              var url = $('#myWizard').attr('action');
+              $.get(url, function (data) {
+                    $("#ajax-content").html(data);
+              });
 
+              return false;
+          });
+                                  </script>
 {% endblock %}
