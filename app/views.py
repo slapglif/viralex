@@ -120,7 +120,7 @@ def oauth_authorized(resp):
 
   this_account = User.query.filter_by(nickname = resp['screen_name']).first()
   if this_account is None:
-      new_account = User(nickname=resp['screen_name'], oauth_token=resp['oauth_token'], oauth_token_secret=resp['oauth_secret'])
+      new_account = User(nickname=resp['screen_name'], oauth_token=resp['oauth_token'], oauth_secret=resp['oauth_token_secret'])
       db_session.add(new_account)
       db_session.commit()
       login_user(new_account)
