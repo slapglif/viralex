@@ -35,8 +35,8 @@
 
 
                 <!--begin jinja content -->
-
-                {% if content != None %}
+ {% for content in pages %}
+                {% if content.type == earn %}
 
                     <div class="col-md-2  sortable-layout ui-sortable">
                         <div class="panel panel-default plain" id="dyn_0">
@@ -58,7 +58,10 @@
 
                     </div>
 
-                {% else %}
+                    {% endif %}
+
+{% endfor %}
+                {% if earn not in types[0].type %}>
 
                     <div align="center"><h3>No points to earn yet, check back later!</h3></div>
 
@@ -77,6 +80,9 @@
 
     {% elif earn == 'g1' %}
 
+
+
+
         <div class="col-md-12  sortable-layout ui-sortable">
         <!-- Start col-lg- 3 -->
         <div class="panel panel-primary" id="dyn_20">
@@ -89,7 +95,11 @@
 
                 <!--begin jinja content -->
 
-                {% if content != None %}
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
 
                     <div class="col-md-2  sortable-layout ui-sortable">
                         <div class="panel panel-default plain" id="dyn_0">
@@ -111,11 +121,18 @@
 
                     </div>
 
-                {% else %}
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
 
                     <div align="center"><h3>No points to earn yet, check back later!</h3></div>
 
                 {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
 
             </div>
 
@@ -132,14 +149,200 @@
 
 
 
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Linkedin</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
+
+
 
     {% elif earn == 'ms' %}
 
 
 
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Myspace</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
+
+
 
     {% elif earn == 'rb' %}
 
+
+
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Reverbnation</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
 
 
 
@@ -148,8 +351,132 @@
 
 
 
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Soundcloud</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
+
+
     {% elif earn == 'su' %}
 
+
+
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Stumbleupon</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
 
 
 
@@ -158,12 +485,134 @@
 
 
 
-    {% elif earn == 'tu' %}
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Traffic Exchange</h4>
+            </div>
+            <div class="panel-body">
 
 
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
 
 
     {% elif earn == 'tw' %}
+
+
+
+        <div class="col-md-12  sortable-layout ui-sortable">
+        <!-- Start col-lg- 3 -->
+        <div class="panel panel-primary" id="dyn_20">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-google-plus"></i> Twitter</h4>
+            </div>
+            <div class="panel-body">
+
+
+                <!--begin jinja content -->
+
+
+             {% for content in pages %}
+
+
+                {% if content.type == earn %}
+
+                    <div class="col-md-2  sortable-layout ui-sortable">
+                        <div class="panel panel-default plain" id="dyn_0">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                    <small>{{ content.points }}</small>
+                                </h4>
+
+                                <div class="panel-body">
+
+                                    img goes here
+
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+
+
+                    </div>
+
+                    {% endif %}
+
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
+
+                    <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+
+                {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
+            </div>
+
+        </div>
+
+ <div align="center">
+     <a href="/addpage" data-ajax="1">
+         <button class="btn btn-success">Add your page here</button>
+     </a>
+ </div>
+
+
 
 
 
@@ -192,13 +641,15 @@
 
                       <!--begin jinja content -->
 
-                {% if content != None %}
+                {% for content in pages %}
 
+
+                    {% if content.type == earn %}
                     <div class="col-md-2  sortable-layout ui-sortable">
                         <div class="panel panel-default plain" id="dyn_0">
                             <!-- Start .panel -->
                             <div class="panel-heading">
-                                <h4 class="panel-title"><strong>{{ content.title }}</strong>
+                                <h4 class="panel-title"><strong>{{ content.url }}</strong>
                                     <small>{{ content.points }}</small>
                                 </h4>
 
@@ -213,12 +664,18 @@
 
 
                     </div>
-
-                {% else %}
+                    {% endif %}
+{% endfor %}
+                {% if types[0] %}
+                {% if earn not in types[0].type %}>
 
                     <div align="center"><h3>No points to earn yet, check back later!</h3></div>
 
                 {% endif %}
+                    {% else %}
+                      <div align="center"><h3>No points to earn yet, check back later!</h3></div>
+                    {% endif %}
+
 
             </div>
 

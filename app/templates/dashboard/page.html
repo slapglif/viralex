@@ -1,53 +1,51 @@
 {% extends 'dashboard/layout.html' %}
 {% block body %}
 
-
-
 <div id="page-header" class="clearfix">
-        <div class="page-header">
-            <h2>My Pages</h2>
-            <span class="txt">Manage your social pages</span>
-        </div>
+    <div class="page-header">
+        <h2>My Pages</h2>
+        <span class="txt">Manage your social pages</span>
     </div>
+</div>
 
 
-   {#<div class="col-md-4" > </div>#}
-        <div class="col-md-12  sortable-layout ui-sortable">
-            <!-- Start col-lg- 3 -->
-            <div class="panel panel-default" id="dyn_20">
-                <!-- Start .panel -->
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class=" l-basic-webpage-img-txt"></i> My Pages</h4>
-                </div>
-                <div class="panel-body">
+{#<div class="col-md-4" > </div>#}
+<div class="col-md-12  sortable-layout ui-sortable">
+    <!-- Start col-lg- 3 -->
+    <div class="panel panel-default" id="dyn_20">
+        <!-- Start .panel -->
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class=" l-basic-webpage-img-txt"></i> My Pages</h4>
+        </div>
+        <div class="panel-body">
 
-                            <div class="col-lg-12 col-md-6">
-                                <!-- col-lg-6 start here -->
-                                <div class="panel panel-default plain toggle panelClose panelRefresh">
-                                    <!-- Start .panel -->
+            <div class="col-lg-12 col-md-6">
+                <!-- col-lg-6 start here -->
+                <div class="panel panel-default plain toggle panelClose panelRefresh">
+                    <!-- Start .panel -->
 
-                                    <div class="panel-body">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
 
-                                                    <th class="per20">Page Title</th>
-                                                    <th class="per15">Page Type</th>
-                                                    <th class="per15">Exchanges</th>
-                                                    <th class="per15">CPC</th>
-                                                    <th class="per20">Demographics</th>
-                                                    <th class="per20">Status</th>
-                                                    <th class="per30">Edit</th>
-                                                </tr>
-                                            </thead>
-                                            {% for content in pages %}
+                                <th class="per20">Page Title</th>
+                                <th class="per15">Page Type</th>
+                                <th class="per15">Exchanges</th>
+                                <th class="per15">CPC</th>
+                                <th class="per20">Demographics</th>
+                                <th class="per20">Status</th>
+                                <th class="per30">Edit</th>
+                            </tr>
+                            </thead>
+                            {% for content in pages %}
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {{ content.url }}
+                                    </td>
+                                    <td>
 
-                                                {% if user.id == content.aid %}
-                                            <tbody>
-                                                <tr>
-                                                                                                        <td>
-                                                        {{ content.url }}
-                                                    </td>
                                         {% if content.type == 'fb' %}Facebook
                                         {% elif content.type == 'g1' %}Google+
                                         {% elif content.type == 'ld' %}Linkedin
@@ -57,34 +55,34 @@
                                         {% elif content.type == 'su' %}Stumbleupon
                                         {% elif content.type == 'tw' %}Twitter
                                         {% elif content.type == 'yt' %}Youtube
-                                    {% endif %}
-                                                    </td>
-                                                                                                        <td>
-                                                        {{ content.ex }}
-                                                    </td>
-                                                                                                        <td>
-                                                        {{ content.ppc }}
-                                                    </td>
-                                                                                                        <td>
-                                                        {{ content.gender }} | {{ content.countries }}
-                                                    </td>
-                                                                                                        <td>
-                                                        <i class="label label-{% if content.status == 1 %}success">Enabled{% else %}danger">Disabled{% endif %}</i>
-                                                    </td>
+                                        {% endif %}
 
-                                                    <td class=""><a class="fa fa-gear" href="/edit/{{ content.page }}"></a></td>
-                                                </tr>
+                                    </td>
+                                    <td>
+                                        {{ content.ex }}
+                                    </td>
+                                    <td>
+                                        {{ content.ppc }}
+                                    </td>
+                                    <td>
+                                        {{ content.gender }} | {{ content.countries }}
+                                    </td>
+                                    <td>
+                                       <i class="label label-{% if content.status == 1 %}success">Enabled{% else %}danger">Disabled{% endif %}</i>
+                                    </td>
 
-                                            </tbody>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- End .panel -->
-                            </div>
-                            <!-- col-lg-6 end here -->
-                        </div>
+                                    <td class=""><a class="fa fa-gear" href="/edit/{{ content.page }}"></a></td>
+                                </tr>
+
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-lg-6 end here -->
+        </div>
 
 
 

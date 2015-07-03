@@ -214,7 +214,9 @@ def page():
 
 @app.route("/earn/<ss>")
 def earn(ss):
-    output = render_template("dashboard/earn.html",earn=ss,content=None)
+    pages = Page.query.filter(Page.url.isnot(None))
+    types = Page.query.filter_by(type=ss)
+    output = render_template("dashboard/earn.html",earn=ss,pages=pages,types=types)
     return output
 
 @app.route("/dashboard")
