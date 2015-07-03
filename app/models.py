@@ -3,6 +3,9 @@ from flask.ext.login import LoginManager, UserMixin
 from app import db_session,Base, app
 from sqlalchemy import Column, Integer, String, Boolean, BLOB
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.sql.expression import Executable, ClauseElement
+
+
 
 from . import bcrypt
 BCRYPT_LOG_ROUNDS = 12
@@ -48,8 +51,13 @@ class User(UserMixin, Base):
         return False
 
     @staticmethod
-    def get_or_create(email):
-        rv = User.query.filter_by(email=email).first()
-        if rv is None:
-
-            return rv
+    def get_or_create(session, model, defaults=None, **kwargs):
+        instance = session.query(model).filter_by(**kwargs).first()
+        if instance:
+            return instance
+        else:
+            params = dict((k, v) for k, v in kwargs.iteritems() if not isinstance(v, ClauseElement))
+            if defaults:
+                params.update(defaults)
+            instance = model(**params)
+            return instance

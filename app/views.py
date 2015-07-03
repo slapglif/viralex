@@ -88,9 +88,15 @@ def index():
 @app.route('/social')
 def social():
     user = None
-    if 'user' in session:
-        user = User.query.filter_by(email=session['user']).first()
     output = render_template('dashboard/social.html',user=user)
+    if current_user.is_authenticated():
+        if 'user' in session:
+            user = User.query.filter_by(id=session['user']).first()
+            if user.email == None:
+                output = render_template('dashboard/social.html',user=user)
+            else:
+                output = redirect(url_for("index"))
+
     return output
 
 
@@ -103,7 +109,7 @@ def login():
         if user.is_correct_password(request.form.get("password")):
             login_user(user)
             print "password is correct"
-            session['user'] = user.email
+            session['user'] = user.id
             return redirect(url_for('index'))
         else:
             print "password is not correct"
@@ -137,7 +143,7 @@ def oauth_authorized(resp):
   else:
       login_user(this_account)
 
-  return redirect(next_url)
+  return redirect(url_for("social"))
 
 
 @twitter.tokengetter
@@ -158,14 +164,16 @@ def register():
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
+    output = render_template("dashboard/register.html")
     if request.form.get("email"):
+        output = redirect(url_for("index"))
         email = request.form.get("email")
         if request.form.get("password") != None:
             password = request.form.get("password")
         else:
             password = "test"
-        exists = User.get_or_create(email)
-        user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
+        exists = User.query.filter_by(email=email).first()
+        user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0, oauth_token=current_user.token, oath_secret=current_user.secret)
 
         # Now we'll send the email confirmation link
         subject = "Confirm your email"
@@ -182,18 +190,19 @@ def create_account():
             confirm_url=confirm_url)
 
         if exists == None:
-            print exists
             db_session.add(user)
             db_session.commit()
             drill(user.email, subject, html)
         else:
-            db_session.merge(user)
+            print "x is %s"
+            User.get_or_create(db_session,User,user)
             db_session.commit()
-            flash("User Already Exists")
+            login_user(user)
+            output = redirect(url_for("index"))
 
-        return redirect(url_for("index"))
 
-    return render_template("dashboard/register.html")
+    return output
+
 
 
 
@@ -207,7 +216,7 @@ def confirm_email(token):
     user = User.query.filter_by(email=email).first()
 
     user.email_confirmed = True
-    session['user'] = user.email
+    session['user'] = user.id
     db_session.commit()
 
 
