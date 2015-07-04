@@ -24,7 +24,7 @@ class Page(Base):
 
 
 
-class User(Base):
+class User(UserMixin, Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     social_id = Column(String(64), nullable=True, unique=True)

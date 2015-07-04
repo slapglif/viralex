@@ -105,7 +105,7 @@ def login():
     if request.form.get("email"):
         user = User.query.filter_by(email=request.form.get("email")).first()
         if user.is_correct_password(request.form.get("password")):
-            login_user(user)
+            login_user(user, True)
             print "password is correct"
             session['user'] = user.id
             return redirect(url_for('index'))
@@ -137,9 +137,9 @@ def oauth_authorized(resp):
       new_account = User(nickname=resp['screen_name'], oauth_token=resp['oauth_token'], oauth_secret=resp['oauth_token_secret'])
       db_session.add(new_account)
       db_session.commit()
-      login_user(new_account)
+      login_user(new_account, True)
   else:
-      login_user(this_account)
+      login_user(this_account, True)
 
   return redirect(url_for("social"))
 
@@ -193,12 +193,13 @@ def create_account():
         if exists == None:
             db_session.add(user)
             db_session.commit()
+            login_user(user, True)
             drill(user.email, subject, html)
         else:
             print "x is %s"
             db_session.merge(user)
             db_session.commit()
-            login_user(user)
+            login_user(user, True)
             output = redirect(url_for("index"))
 
 
