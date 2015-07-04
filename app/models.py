@@ -45,10 +45,7 @@ class User(UserMixin, Base):
         self._password = bcrypt.generate_password_hash(plaintext)
 
     def is_correct_password(self, plaintext):
-        if bcrypt.check_password_hash(self._password, plaintext):
-                return True
-
-        return False
+        return bcrypt.check_password_hash(self._password.encode('utf-8'), plaintext)
 
     @staticmethod
     def get_or_create(session, model, defaults=None, **kwargs):
