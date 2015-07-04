@@ -185,7 +185,13 @@
 
 
 <div id="ajax-content">
-{% block body %}{% endblock %}
+{% if user.email_confirmed == 1 %}
+{% block body %}
+{% endblock %}
+{% else %}
+ <div align="center"><h1>You need to verify your email to proceed!</h1></div>
+{% endif %}
+
 </div>
 
 </div>
