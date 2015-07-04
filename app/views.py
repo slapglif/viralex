@@ -171,7 +171,7 @@ def create_account():
         else:
             password = "test"
         exists = User.query.filter_by(email=email).first()
-        if current_user != None:
+        if current_user.token != None:
             user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0, oauth_token=current_user.token, oath_secret=current_user.secret)
         else:
             user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
