@@ -24,10 +24,22 @@ app.config['OAUTH_CREDENTIALS'] = {
     }
 }
 
-
-
-
 oauth = OAuth()
+
+
+
+
+
+facebook = oauth.remote_app('facebook',
+    base_url='https://graph.facebook.com/',
+    request_token_url=None,
+    access_token_url='/oauth/access_token',
+    authorize_url='https://www.facebook.com/dialog/oauth',
+    consumer_key="x",
+    consumer_secret="y",
+    request_token_params={'scope': ('email, ')}
+)
+
 
 # Use Twitter as example remote application
 twitter = oauth.remote_app('twitter',
@@ -47,6 +59,19 @@ twitter = oauth.remote_app('twitter',
     consumer_key='vc5zMaa1FJ1xrWL6E0YTE8G3I',
     consumer_secret='g0fINwUZU4RpNi3ilWDskK2PWtk7UYqLrilDUE6G9uiHpgTphy'
 )
+
+
+@twitter.tokengetter
+def get_twitter_token():
+  if current_user.is_authenticated():
+      return (current_user.token, current_user.secret)
+  else:
+      return None
+
+@facebook.tokengetter
+def get_facebook_token():
+    return session.get('facebook_token')
+
 
 
 @app.before_request
@@ -144,12 +169,6 @@ def oauth_authorized(resp):
   return redirect(url_for("social"))
 
 
-@twitter.tokengetter
-def get_twitter_token():
-  if current_user.is_authenticated():
-      return (current_user.token, current_user.secret)
-  else:
-      return None
 
 
 
