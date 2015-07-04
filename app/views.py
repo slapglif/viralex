@@ -5,12 +5,11 @@ from app import app, engine, db_session
 from mandril import drill
 from flask import Flask, redirect, url_for, render_template, flash, request, session, g
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager, UserMixin, login_user, logout_user,\
+from flask.ext.login import LoginManager, login_user, logout_user,\
     current_user
 from oauth import OAuthSignIn
 from itsdangerous import URLSafeTimedSerializer
 from subprocess import (PIPE, Popen)
-from flask.ext.login import login_user
 from flask_oauth import OAuth
 import json
 
@@ -195,7 +194,7 @@ def create_account():
             drill(user.email, subject, html)
         else:
             print "x is %s"
-            User.get_or_create(db_session,User,user)
+            db_session.merge(user)
             db_session.commit()
             login_user(user)
             output = redirect(url_for("index"))
