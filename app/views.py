@@ -74,6 +74,7 @@ def get_facebook_token():
 
 
 
+
 @app.before_request
 def before_request():
     g.user = None
@@ -108,24 +109,8 @@ def index():
 
 
 
-@app.route('/social')
-def social():
-    user = None
-    output = render_template('dashboard/social.html',user=user)
-    if current_user.is_authenticated():
-        if 'user' in session:
-            user = User.query.filter_by(id=session['user']).first()
-            if user.email == None:
-                output = render_template('dashboard/social.html',user=user)
-            else:
-                output = redirect(url_for("index"))
-
-    return output
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
 
     if request.form.get("email"):
         user = User.query.filter_by(email=request.form.get("email")).first()
@@ -150,8 +135,17 @@ def twlogin():
     return twitter.authorize(callback=url_for('oauth_authorized',
       next=request.args.get('next') or request.referrer or None))
 
+
+@app.route("/facebook_login")
+def facebook_login():
+    return facebook.authorize(callback=url_for('facebook_authorized',
+        next=request.args.get('next'), _external=True))
+
+
+
 @app.route('/oauth-authorized')
 @twitter.authorized_handler
+@facebook.authorized_handler
 def oauth_authorized(resp):
   next_url = request.args.get('next') or url_for('index')
   if resp is None:
@@ -170,6 +164,19 @@ def oauth_authorized(resp):
 
 
 
+@app.route('/social')
+def social():
+    user = None
+    output = render_template('dashboard/social.html',user=user)
+    if current_user.is_authenticated():
+        if 'user' in session:
+            user = User.query.filter_by(id=session['user']).first()
+            if user.email == None:
+                output = render_template('dashboard/social.html',user=user)
+            else:
+                output = redirect(url_for("index"))
+
+    return output
 
 
 @app.route("/register")
