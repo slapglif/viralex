@@ -36,7 +36,7 @@ facebook = oauth.remote_app('facebook',
     access_token_url='/oauth/access_token',
     authorize_url='https://www.facebook.com/dialog/oauth',
     consumer_key="x",
-    consumer_secret="y",
+    consumer_secret="9f737bb729717ce5d2b944b6a582713e",
     request_token_params={'scope': ('email, ')}
 )
 
@@ -71,8 +71,6 @@ def get_twitter_token():
 @facebook.tokengetter
 def get_facebook_token():
     return session.get('facebook_token')
-
-
 
 
 @app.before_request
@@ -128,16 +126,12 @@ def login():
 
 @app.route("/twlogin")
 def twlogin():
-    # """Calling into authorize will cause the OpenID auth machinery to kick
-    # in.  When all worked out as expected, the remote application will
-    # redirect back to the callback URL provided.
-    # """
     return twitter.authorize(callback=url_for('oauth_authorized',
       next=request.args.get('next') or request.referrer or None))
 
 
-@app.route("/facebook_login")
-def facebook_login():
+@app.route("/fblogin")
+def fblogin():
     return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next'), _external=True))
 
