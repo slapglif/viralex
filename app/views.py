@@ -5,8 +5,7 @@ from app import app, engine, db_session
 from mandril import drill
 from flask import Flask, redirect, url_for, render_template, flash, request, session, g
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager, login_user, logout_user,\
-    current_user
+from flask.ext.login import LoginManager, login_user, logout_user, current_user
 from oauth import OAuthSignIn
 from itsdangerous import URLSafeTimedSerializer
 from subprocess import (PIPE, Popen)
@@ -172,7 +171,10 @@ def create_account():
         else:
             password = "test"
         exists = User.query.filter_by(email=email).first()
-        user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0, oauth_token=current_user.token, oath_secret=current_user.secret)
+        if current_user != None:
+            user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0, oauth_token=current_user.token, oath_secret=current_user.secret)
+        else:
+            user = User(nickname=request.form.get("username"), email=email, password=password, vpoints=0, email_confirmed=0)
 
         # Now we'll send the email confirmation link
         subject = "Confirm your email"
